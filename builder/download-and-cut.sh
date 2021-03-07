@@ -6,12 +6,11 @@ BEGIN_TIME=$1
 END_TIME=$2
 URL_YOUTUBE=$3
 PATH_DOWNLOAD="/home/download"
-PATH_HTTPD="/usr/local/apache2/htdocs/"
+PATH_HTTPD="/var/www/html"
 
 echo "=========================================================="
 echo -e "\nValores de entrada: \n\tTempo de início: $BEGIN_TIME\n\tTempo de fim: $END_TIME\n\tURL do youtube: $URL_YOUTUBE"
 echo "=========================================================="
-
 if curl --output /dev/null --silent --head --fail "$URL_YOUTUBE"; then
     echo -e "\nURL retornou código válido."
     echo -e "\n\tComeçando a baixar o vídeo $URL_YOUTUBE\n\n"

@@ -1,18 +1,15 @@
-FROM httpd:alpine
+FROM php:7.4-apache
 
-RUN apk update && \
-    apk add bash && \
-    apk add php7 php7-fpm php7-opcache && \
-    apk add ffmpeg && \
-    apk add py-pip &&\
+RUN apt-get -y update && \
+    apt-get install -y ffmpeg && \
+    apt-get install -y python-pip &&\
     pip install -U youtube-dl &&\
-    apk add curl && \
-    apk add openrc
-
+    apt-get install -y curl 
+    
 RUN mkdir -p /home/download && \
     mkdir -p /home/scripts 
 COPY --chown=root:root ./download-and-cut.sh /home/scripts
-
-RUN chmod 700 -R /home/scripts/download-and-cut.sh && \
-    rm -rf /usr/local/apache2/htdocs/index.html
+COPY --chown=root:root ./php/info.php /var/www/html
+COPY --chown=root:root ./php/action.php /var/www/html
+RUN chmod 700 -R /home/scripts/download-and-cut.sh 
 
