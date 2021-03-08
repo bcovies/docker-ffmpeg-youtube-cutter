@@ -4,5 +4,3 @@ services:
     image: video-cutter
     ports: 
       - 1000:80
-    volumes: 
-      - "/opt/docker/builder/ffmpeg-youtube-cutter/builder/php:/var/www/html"
